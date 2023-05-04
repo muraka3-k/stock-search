@@ -5,11 +5,11 @@
 - 銘柄コードと対象URLを指定する
 - 銘柄ごとに対象ページへ遷移し、情報を取得する
 
-# Install
+# インストール手順
 ```
 git clone https://github.com/muraka3-k/stock-search.git
 cd stock-search
-pip install git+https://github.com/muraka3-k/stock-search.git
+poetry install
 ```
 
 poetryをインストールしていない場合は以下のコマンドでインストールしてください。
