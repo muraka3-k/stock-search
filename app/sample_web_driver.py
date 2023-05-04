@@ -146,4 +146,9 @@ if __name__ == "__main__":
     url = ""
     ticker_list = [2914, 9104]
     wd = SampleWebDrive(url)
-    wd.searchTickerPage(ticker_list[0])
+    result = []
+    for ticker in ticker_list:
+        result.append(wd.searchTickerPage(ticker))
+
+    with open('search_result.json', 'w') as f:
+        json.dump(result, f, indent=4, ensure_ascii=False)
