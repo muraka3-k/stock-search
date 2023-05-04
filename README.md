@@ -14,7 +14,7 @@ poetry install
 
 poetryをインストールしていない場合は以下のコマンドでインストールしてください。
 ```
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+curl -sSL https://install.python-poetry.org | python3 -
 ```
 そして、環境に応じて、PoetryのPATHを通してください。
 
@@ -34,20 +34,26 @@ ticker_list=["銘柄コード", "銘柄コード"]
 ```
 
 ```
+poetry shell
 python app/sample_web_driver.py
 ```
 
 
 # Run（jupyter版）
 ## sample_web_driverの実行時
-1. 環境変数用のファイル生成(`sample-code.ipynb`)：
+1. 
+```
+poetry shell
+jupyter noootbook
+```
+2. 環境変数用のファイル生成(`sample-code.ipynb`)：
 
     ```
     url="調査対象のHPのURL"
     ticker_list=["銘柄コード", "銘柄コード"]
     ```
 
-2. 実行する(`sample-code.ipynb`)：
+3. 実行する(`sample-code.ipynb`)：
 
     1で入力した情報を元に、すべてを実行する
 
