@@ -613,6 +613,20 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "lxml"
+version = "4.9.2"
+description = "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API."
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, != 3.4.*"
+
+[package.extras]
+cssselect = ["cssselect (>=0.7)"]
+html5 = ["html5lib"]
+htmlsoup = ["beautifulsoup4"]
+source = ["Cython (>=0.29.7)"]
+
+[[package]]
 name = "markupsafe"
 version = "2.1.2"
 description = "Safely add untrusted strings to HTML/XML markup."
@@ -1331,7 +1345,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "flake8 (<5)", "pytest-co
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "06d68ec0df4c458b1450b1316bb024d0c1e8ec430911ee9288f8da404a98b866"
+content-hash = "23418f44b5df1e0418e6509cc01f032c3bf25470f520a502b27d2260dab90320"
 
 [metadata.files]
 anyio = []
@@ -1378,6 +1392,7 @@ jupyter-server = []
 jupyter-server-terminals = []
 jupyterlab-pygments = []
 jupyterlab-widgets = []
+lxml = []
 markupsafe = []
 matplotlib-inline = []
 mistune = []
