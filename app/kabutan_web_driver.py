@@ -9,19 +9,26 @@ import json
 from base_web_driver import BaseWebDriver
 
 class KabutanWebDrive(BaseWebDriver):
+    wait_time_element = 0
+
+    def __init__(self, url:str = None):
+        ### kabutanは待ち時間5秒にする
+        super().__init__(url, wait_next_page = 5)
+        self.wait_time_element = 3
+        print("wait time for next element:", self.wait_time_element)
+
     ### チャートのメニューから入力文字（button_name）をクリックする処理
     def jumpChartMenu(self, button_name):
         chart_menu = self.wait_element(self.driver, By.CLASS_NAME, "chart_menu")
         chart_menu.find_element(By.LINK_TEXT, button_name).click()
-        time.sleep(2)
+        time.sleep(self.wait_time_element)
 
     ### 銘柄コードを入力してトップ画面へ移行する
     def jumpTickerTopPage(self, ticker_code: int):
             top_key = self.wait_element(self.driver, by_id = By.CLASS_NAME, name = "kensaku_input").find_element(By.ID, "input_id")
             top_key.send_keys(ticker_code)
-            time.sleep(1)
             top_key.send_keys(Keys.ENTER)
-            time.sleep(3)
+            time.sleep(self.wait_new_page)
             self.jumpChartMenu("基本情報")
             return
 
@@ -169,11 +176,11 @@ class KabutanWebDrive(BaseWebDriver):
     def searchTickerPage(self, ticker_code:int = 0):
         result_json = {}
 
+        ### トップページに遷移する
         self.jumpBaseURL()
-        time.sleep(3)
 
+        ### 銘柄ページへ移動する
         self.jumpTickerTopPage(ticker_code)
-        time.sleep(2)
 
         ### 業種情報取得
         result_json["銘柄コード"] = ticker_code
@@ -206,7 +213,7 @@ if __name__ == "__main__":
         ticker_list = [int(ticker) for ticker in  sys.argv[1:]]
     else:
       ticker_list = [2914, 9104]
-    print("input ticker:", ticker_list)
+    print("search ticker:", ticker_list)
 
     url = "https://kabutan.jp/"
     wd = KabutanWebDrive(url)
