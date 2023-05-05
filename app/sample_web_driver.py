@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import time
 import json
+import sys
 
 from base_web_driver import BaseWebDriver
 
@@ -142,9 +143,14 @@ class SampleWebDrive(BaseWebDriver):
 
         return result_json
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
+    if len(sys.argv[1:]) != 0:
+        ticker_list = [int(ticker) for ticker in  sys.argv[1:]]
+    else:
+      ticker_list = [2914, 9104]
+    print("search ticker:", ticker_list)
+
     url = ""
-    ticker_list = [2914, 9104]
     wd = SampleWebDrive(url)
     result = []
     for ticker in ticker_list:
