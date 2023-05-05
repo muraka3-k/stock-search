@@ -36,7 +36,10 @@ pip install lxml
 
 # Run
 ## kabutan_web_driverの実行時
-`app/kabutane_web_driver.py`の205行目の書き換えを行う
+`app/kabutane_web_driver.py`の208行目の書き換えを行う
+
+呼び出し時に銘柄コードを指定した場合は、その入力を優先します
+
 ```
 ticker_list=["銘柄コード", "銘柄コード"]  ## （例）[2914, 9104, 9433]
 ```
@@ -56,6 +59,9 @@ ticker_list=["銘柄コード", "銘柄コード"]
 ```
 poetry shell
 python app/sample_web_driver.py
+
+### 直接設定時はスペースで区切る
+python app/sample_web_driver.py 2914 9104 9433
 ```
 
 
@@ -92,6 +98,9 @@ jupyter noootbook
 3. 実行する(`sample-code.ipynb`)：
 
     1で入力した情報を元に、すべてを実行する
+
+#　注意事項
+- 銘柄コードのチェック等を一切行っていないため、文字列/存在しない銘柄コード等の入力時に検索できません
 
 # Author
 

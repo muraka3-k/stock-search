@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 
+import sys
 import time
 import json
 
@@ -201,8 +202,13 @@ class KabutanWebDrive(BaseWebDriver):
         return result_json
 
 if __name__ == "__main__": 
+    if len(sys.argv[1:]) != 0:
+        ticker_list = [int(ticker) for ticker in  sys.argv[1:]]
+    else:
+      ticker_list = [2914, 9104]
+    print("input ticker:", ticker_list)
+
     url = "https://kabutan.jp/"
-    ticker_list = [2914, 9104]
     wd = KabutanWebDrive(url)
     result = []
     for ticker in ticker_list:
