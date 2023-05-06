@@ -37,11 +37,21 @@ class BaseWebDriver:
     ### [in]by_id：待機する要素の検索するID（By.TAG_NAME、By.CLASS_NANE等）
     ### [in]name：探索する要素の名称
     ### [in]timeout：タイムアウトまで待つ時間
+    ### [in]th_err ：取得をやり直す回数
     ### [out]探索した要素
-    def wait_element(self, driver:webdriver, by_id:By, name:str, timeout:int = 10):
-         return WebDriverWait(driver, timeout).until(
-             EC.presence_of_element_located((by_id, name))
-             )
+    def wait_element(self, driver:webdriver, by_id:By, name:str, timeout:int = 10, th_err: int = 10):
+         err_count= 0
+         element  = None
+         while element is None:
+            try:
+                element = WebDriverWait(driver, timeout).until(
+                    EC.presence_of_element_located((by_id, name))
+                    )
+            except Exception  as identifier:
+                err_count += 1
+                if errCount >= th_err:
+                    raise identifier
+         return element
     ### JavaScriptで記載されたJSON部分を抽出する関数
     ### [in] driver：webdriver（page_sourceを取得するため必須）
     ### [in] label_list：抽出したいソースでテキスト化されているリスト
