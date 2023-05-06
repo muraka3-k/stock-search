@@ -36,12 +36,22 @@ pip install lxml
 
 # Run
 ## kabutan_web_driverの実行時
-`app/kabutane_web_driver.py`の208行目の書き換えを行う
+
+### 直接指定する場合
+
+```
+poetry shell
+python app/kabutane_web_driver.py 2914 9104 9433
+```
+
+### ファイル内で指定する場合
+`app/kabutane_web_driver.py`の215行目の書き換えを行う
 
 呼び出し時に銘柄コードを指定した場合は、その入力を優先します
 
-```
-ticker_list=["銘柄コード", "銘柄コード"]  ## （例）[2914, 9104, 9433]
+``` diff python
+- ticker_list = [2914, 9104]
++ ticker_list=["銘柄コード", "銘柄コード"]
 ```
 
 ```
@@ -50,11 +60,24 @@ python app/kabutan_web_driver.py
 ```
 
 ## sample_web_driverの実行時
-`app/sample_web_driver.py`の146,147行目の書き換えを行う
+
+### 直接指定する場合
+
 ```
-url="調査対象のHPのURL"
-ticker_list=["銘柄コード", "銘柄コード"]
+poetry shell
+python app/sample_web_driver.py 2914 9104 9433
 ```
+
+### ファイル内で指定する場合
+`app/sample_web_driver.py`の150行目と153行目の書き換えを行う
+``` diff python
+- ticker_list = [2914, 9104]
++ ticker_list=["銘柄コード", "銘柄コード"]
+
+- url = ""
++ url = "指定サイトのURL"
+```
+
 
 ```
 poetry shell
